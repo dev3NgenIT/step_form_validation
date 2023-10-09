@@ -496,6 +496,14 @@
         stroke-dashoffset: 0;
         transition: all 0.15s ease;
       }
+      .border-title {
+        position: relative;
+        top: -20px;
+        left: 11px;
+      }
+      .border-dashed-section {
+        border: 1px solid #ae0a46;
+      }
     </style>
   </head>
   <body>
@@ -542,385 +550,485 @@
               </div>
               <div class="col-lg-10 p-3">
                 <form role="form" id="form">
-                  <div class="border p-3 setup-content me-3" id="step-1">
+                  <div class="p-3 setup-content me-3" id="step-1">
                     <div class="col-md-12">
                       <!-- Form Field Start -->
                       <div class="row gx-2">
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Client Id <span class="text-danger"> * </span></label
+                        <!-- Primary Information Area Here -->
+                        <div class="col-lg-12 mb-4">
+                          <div
+                            class="primary_info section_border border-dashed-section p-2"
+                          >
+                            <p
+                              class="p-0 m-0 main_bg w-25 text-center text-white rounded-pill border-title"
                             >
-                            <select
-                              name="client_id"
-                              class="form-select w-100 select-wizard clientID"
-                              data-allow-clear="true"
-                              placeholder="Choose Client"
-                              required
-                            >
-                              <option class="common_client">Select Client Id</option>
-                              <option>UK</option>
-                              <option>USA</option>
-                              <option>Germany</option>
-                            </select>
+                              Primary Information
+                            </p>
+                            <div class="row gx-1">
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <div
+                                    class="control-label mb-1 d-flex justify-content-between main_color fw-bold label_size"
+                                  >
+                                    <p class="p-0 m-0">Client Name</p>
+                                    <a
+                                      href="javascript:void(0)"
+                                      class="p-0 m-0 text-end"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#exampleModal"
+                                      >Create Client</a
+                                    >
+                                  </div>
+                                  <select
+                                    name="client_id"
+                                    class="form-select w-100 select-wizard clientID"
+                                    data-allow-clear="true"
+                                    placeholder="Choose Client"
+                                    required
+                                  >
+                                    <option class="common_client">
+                                      Select Client Id
+                                    </option>
+                                    <option>UK</option>
+                                    <option>USA</option>
+                                    <option>Germany</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Country</label
+                                  >
+                                  <select
+                                    name="country"
+                                    class="form-select w-100 select-wizard clientID"
+                                    data-allow-clear="true"
+                                    placeholder="Choose Client"
+                                  >
+                                    <option class="common_client">
+                                      Select Country
+                                    </option>
+                                    <option>UK</option>
+                                    <option>USA</option>
+                                    <option>Germany</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Client Code</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="text"
+                                    name="client_code"
+                                    class="form-control"
+                                    placeholder="Enter Client Code"
+                                    id="client_code"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Status
+                                    <span class="text-danger"> * </span></label
+                                  >
+                                  <select
+                                    class="form-select w-100 select-wizard clientID"
+                                    data-allow-clear="true"
+                                    placeholder="Choose Client"
+                                    name="status"
+                                    required
+                                  >
+                                    <option class="common_client">
+                                      Select Status
+                                    </option>
+                                    <option value="pending">Pending</option>
+                                    <option value="on_going">On Going</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="delaying">Delaying</option>
+                                    <option value="partially_deployed">
+                                      Partially Deployed
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Sector Id <span class="text-danger"> * </span></label
+                        <!-- Project Information Area Here -->
+                        <div class="col-lg-12 mb-4">
+                          <div
+                            class="primary_info section_border border-dashed-section p-2"
+                          >
+                            <p
+                              class="p-0 m-0 main_bg w-25 text-center text-white rounded-pill border-title"
                             >
-                            <select
-                              class="form-select w-100 select-wizard clientID"
-                              data-allow-clear="true"
-                              placeholder="Choose Client"
-                              name="sector_id" required
-                            >
-                              <option class="common_client" value="">Select Sector Id</option>
-                              <option>UK</option>
-                              <option>USA</option>
-                              <option>Germany</option>
-                            </select>
+                              Project Information
+                            </p>
+                            <div class="row gx-1">
+                              <div class="col-lg-2 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Sector Name
+                                    <span class="text-danger"> * </span></label
+                                  >
+                                  <select
+                                    class="form-select w-100 select-wizard clientID"
+                                    data-allow-clear="true"
+                                    placeholder="Choose Client"
+                                    name="sector_id"
+                                    required
+                                  >
+                                    <option class="common_client" value="">
+                                      Select Sector name
+                                    </option>
+                                    <option>UK</option>
+                                    <option>USA</option>
+                                    <option>Germany</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-lg-2 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Project ID (PID)</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="text"
+                                    name="project_code"
+                                    class="form-control"
+                                    placeholder="Enter Project Code"
+                                    id="project_code"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Project Start Time
+                                    <span class="text-danger"> * </span></label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="date"
+                                    name="create_time"
+                                    class="form-control"
+                                    placeholder="Enter Start Time"
+                                    id="create_time"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Project Close Time</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="date"
+                                    name="closed_time"
+                                    class="form-control"
+                                    placeholder="Enter Close Time"
+                                    id="closed_time"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-2 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Project Duration</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="number"
+                                    name="project_duration"
+                                    class="form-control"
+                                    placeholder="Enter Duration"
+                                    id="firstName"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-4 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Project Name
+                                    <span class="text-danger"> * </span></label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="text"
+                                    name="project_title"
+                                    class="form-control"
+                                    placeholder="Enter Your Project Name"
+                                    id="project_title"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Project Description</label
+                                  >
+                                  <textarea
+                                    class="form-control"
+                                    id="project_description"
+                                    rows="1"
+                                    name="project_description"
+                                    placeholder="Enter project Description"
+                                  ></textarea>
+                                </div>
+                              </div>
+                               <div class="col-lg-2 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Team Member</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="number"
+                                    name="team_member"
+                                    class="form-control"
+                                    placeholder="Enter Team Members Number"
+                                    id="team_member"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div
+                                  class="d-flex justify-content-center align-items-center border mb-2 mt-4 pt-2"
+                                >
+                                  <div class="form-group">
+                                    <div class="checkbox-wrapper-65">
+                                      <label for="cbk1-678">
+                                        <input
+                                          id="cbk1-678"
+                                          type="checkbox"
+                                          name="amc_support"
+                                          class="checkbox-toggle"
+                                          data-target="#amc_support_row"
+                                        />
+                                        <span class="cbx">
+                                          <svg
+                                            viewBox="0 0 12 11"
+                                            height="11px"
+                                            width="12px"
+                                          >
+                                            <polyline
+                                              points="1 6.29411765 4.5 10 11 1"
+                                            ></polyline>
+                                          </svg>
+                                        </span>
+                                        <span>Phase</span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="form-group ms-2">
+                                    <div class="checkbox-wrapper-65">
+                                      <label for="cbk1-677">
+                                        <input
+                                          id="cbk1-677"
+                                          type="checkbox"
+                                          name="amc_support"
+                                          class="checkbox-toggle"
+                                          data-target="#amc_support_row"
+                                        />
+                                        <span class="cbx">
+                                          <svg
+                                            viewBox="0 0 12 11"
+                                            height="11px"
+                                            width="12px"
+                                          >
+                                            <polyline
+                                              points="1 6.29411765 4.5 10 11 1"
+                                            ></polyline>
+                                          </svg>
+                                        </span>
+                                        <span>Support</span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Project ID (PID)</label
+                        <!-- Order Information Area Here -->
+                        <div class="col-lg-12 mb-4">
+                          <div
+                            class="primary_info section_border border-dashed-section p-2"
+                          >
+                            <p
+                              class="p-0 m-0 main_bg w-25 text-center text-white rounded-pill border-title"
                             >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="project_code"
-                              class="form-control"
-                              placeholder="Enter Project Code"
-                              id="project_code"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Team Member</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="number"
-                              name="team_member"
-                              class="form-control"
-                              placeholder="Enter Team Members Number"
-                              id="team_member"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Project Name <span class="text-danger"> * </span></label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="project_title"
-                              class="form-control"
-                              placeholder="Enter Your Project Name"
-                              id="project_title" required
-                            />
-                          </div>
-                        </div>
-
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Partner Name</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="partner_name"
-                              class="form-control"
-                              value="NGEN IT"
-                              placeholder="Enter Project Code"
-                              id="partner_name"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Client Name <span class="text-danger"> * </span> </label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="client_name"
-                              class="form-control"
-                              placeholder="Enter Client Name"
-                              id="client_name" required
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-2 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Client Code</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="client_code"
-                              class="form-control"
-                              placeholder="Enter Client Code"
-                              id="client_code"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="col-lg-2 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Duration</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="number"
-                              name="project_duration"
-                              class="form-control"
-                              placeholder="Enter Duration"
-                              id="firstName"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Start Time <span class="text-danger"> * </span></label
-                            >
-                            <input
-                              maxlength="100"
-                              type="date"
-                              name="create_time"
-                              class="form-control"
-                              placeholder="Enter Start Time"
-                              id="create_time" required
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Close Time</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="date"
-                              name="closed_time"
-                              class="form-control"
-                              placeholder="Enter Close Time"
-                              id="closed_time"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-2 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Order Id</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="order_id"
-                              class="form-control"
-                              placeholder="Enter Order Number"
-                              id="order_id"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-2 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Support Hour</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="support_hour"
-                              class="form-control"
-                              placeholder="Enter Support Hour"
-                              id="support_hour"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Partner Primary Contact</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="partner_primary_contact"
-                              class="form-control"
-                              placeholder="Enter Project Code"
-                              id="partner_primary_contact"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Partner Secondary Contact</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="partner_secondary_contact"
-                              class="form-control"
-                              placeholder="Enter Partner Secondary Contact"
-                              id="partner_secondary_contact"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Client Primary Contact</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="client_primary_contact"
-                              class="form-control"
-                              placeholder="Enter Client Primary Contact"
-                              id="client_primary_contact"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Client Secondary Contact</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="text"
-                              name="client_secondary_contact"
-                              class="form-control"
-                              placeholder="Enter Client Secondary Contact"
-                              id="client_secondary_contact"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Contact Agreement</label
-                            >
-                            <input
-                              maxlength="100"
-                              type="file"
-                              name="contact_agreement"
-                              class="form-control"
-                              placeholder="Enter Contact Agreement"
-                              id="contact_agreement"
-                            />
-                          </div>
-                        </div>
-                        <!-- <div class="col-lg-4 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Support Tier</label
-                            >
-                            <select
-                              class="form-select w-100 select-wizard clientID"
-                              data-allow-clear="true"
-                              placeholder="Select Support Tier"
-                              name="support_tier"
-                            >
-                              <option class="common_client"></option>
-                              <option value="basic">Basic</option>
-                              <option value="standard">Standard</option>
-                              <option value="premium">Premium</option>
-                            </select>
-                          </div>
-                        </div> -->
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Status <span class="text-danger"> * </span></label
-                            >
-                            <select
-                              class="form-select w-100 select-wizard clientID"
-                              data-allow-clear="true"
-                              placeholder="Choose Client"
-                              name="status"
-                              required
-                            >
-                              <option class="common_client">Select Status</option>
-                              <option value="pending">Pending</option>
-                              <option value="on_going">On Going</option>
-                              <option value="completed">Completed</option>
-                              <option value="delaying">Delaying</option>
-                              <option value="partially_deployed">
-                                Partially Deployed
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Status Description</label
-                            >
-                            <textarea
-                              class="form-control"
-                              id="status_description"
-                              rows="1"
-                              name="status_description"
-                              placeholder="Enter Status Description"
-                            ></textarea>
-                          </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                          <div class="form-group mb-2">
-                            <label
-                              class="control-label main_color fw-bold label_size"
-                              >Country</label
-                            >
-                            <select
-                              name="country"
-                              class="form-select w-100 select-wizard clientID"
-                              data-allow-clear="true"
-                              placeholder="Choose Client"
-                            >
-                              <option class="common_client">Select Country</option>
-                              <option>UK</option>
-                              <option>USA</option>
-                              <option>Germany</option>
-                            </select>
+                              Order Information
+                            </p>
+                            <div class="row gx-1">
+                              <div class="col-lg-2 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Order Number</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="text"
+                                    name="order_id"
+                                    class="form-control"
+                                    placeholder="Enter Order Number"
+                                    id="order_id"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-2 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Order Date
+                                    <span class="text-danger"> * </span></label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="date"
+                                    name="order_date"
+                                    class="form-control"
+                                    placeholder="Enter Start Time"
+                                    id="order_date"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Contact Agreement</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="file"
+                                    name="contact_agreement"
+                                    class="form-control"
+                                    placeholder="Enter Contact Agreement"
+                                    id="contact_agreement"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-2 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Partner Name</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="text"
+                                    name="partner_name"
+                                    class="form-control"
+                                    value="NGEN IT"
+                                    placeholder="Enter Project Code"
+                                    id="partner_name"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Status Description</label
+                                  >
+                                  <textarea
+                                    class="form-control"
+                                    id="status_description"
+                                    rows="1"
+                                    name="status_description"
+                                    placeholder="Enter Status Description"
+                                  ></textarea>
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Client Primary Contact</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="text"
+                                    name="client_primary_contact"
+                                    class="form-control"
+                                    placeholder="Enter Client Primary Contact"
+                                    id="client_primary_contact"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Client Secondary Contact</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="text"
+                                    name="client_secondary_contact"
+                                    class="form-control"
+                                    placeholder="Enter Client Secondary Contact"
+                                    id="client_secondary_contact"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Partner Primary Contact</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="text"
+                                    name="partner_primary_contact"
+                                    class="form-control"
+                                    placeholder="Enter Project Code"
+                                    id="partner_primary_contact"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-lg-3 col-sm-6">
+                                <div class="form-group mb-2">
+                                  <label
+                                    class="control-label main_color fw-bold label_size"
+                                    >Partner Secondary Contact</label
+                                  >
+                                  <input
+                                    maxlength="100"
+                                    type="text"
+                                    name="partner_secondary_contact"
+                                    class="form-control"
+                                    placeholder="Enter Partner Secondary Contact"
+                                    id="partner_secondary_contact"
+                                  />
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -930,7 +1038,7 @@
                           class="btn btn-next nextBtn pull-right mt-3"
                           type="button"
                         >
-                          Next Step
+                          Next
                         </button>
                       </div>
                     </div>
@@ -939,97 +1047,100 @@
                   <div class="border p-3 setup-content me-3" id="step-2">
                     <div class="col-md-12">
                       <h5 class="main_color pb-2">Phase Details</h5>
-                        <!-- Form Field Start -->
-                        <div class="row gx-2">
-                          <div class="col-lg-4 col-sm-6">
-                            <div class="form-group mb-2">
-                              <label
-                                class="control-label main_color fw-bold label_size"
-                                >Type <span class="text-danger"> * </span></label
-                              >
-                              <select
-                                class="form-select w-100 select-wizard clientID"
-                                data-allow-clear="true"
-                                placeholder="Choose Client"
-                                name="type" required
-                              >
-                                <option class="common_client" value="">
-                                  Select Type
-                                </option>
-                                <option value="development">Development</option>
-                                <option value="deployment">Deployment</option>
-                              </select>
-                            </div>
+                      <!-- Form Field Start -->
+                      <div class="row gx-2">
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Type <span class="text-danger"> * </span></label
+                            >
+                            <select
+                              class="form-select w-100 select-wizard clientID"
+                              data-allow-clear="true"
+                              placeholder="Choose Client"
+                              name="type"
+                              required
+                            >
+                              <option class="common_client" value="">
+                                Select Type
+                              </option>
+                              <option value="development">Development</option>
+                              <option value="deployment">Deployment</option>
+                            </select>
                           </div>
-                          <div class="col-lg-4 col-sm-6">
-                            <div class="form-group mb-2">
-                              <label
-                                class="control-label main_color fw-bold label_size"
-                                >Phase <span class="text-danger"> * </span></label
-                              >
-                              <select
-                                class="form-select w-100 select-wizard clientID"
-                                data-allow-clear="true"
-                                placeholder="Select Phase"
-                                name="phase" required
-                              >
-                                <option class="common_client" value="">
-                                  Select Phase
-                                </option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-lg-4 col-sm-6">
-                            <div class="form-group mb-2">
-                              <label
-                                class="control-label main_color fw-bold label_size"
-                                >Phase Id</label
-                              >
-                              <input
-                                maxlength="100"
-                                type="text"
-                                name="phase_id"
-                                class="form-control"
-                                placeholder="Enter Phase ID"
-                                id="phase_id" 
-                              />
-                            </div>
-                          </div>
-                          <div class="col-lg-12 col-sm-6">
-                            <div class="form-group mb-2">
-                              <label
-                                class="control-label main_color fw-bold label_size"
-                                >Phase Title <span class="text-danger"> * </span></label
-                              >
-                              <input
-                                maxlength="100"
-                                type="text"
-                                name="phase_title"
-                                class="form-control"
-                                placeholder="Enter Phase Title"
-                                id="phase_title" required
-                              />
-                            </div>
-                          </div>
-                          
                         </div>
-                        <!-- Form Field End -->
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Phase <span class="text-danger"> * </span></label
+                            >
+                            <select
+                              class="form-select w-100 select-wizard clientID"
+                              data-allow-clear="true"
+                              placeholder="Select Phase"
+                              name="phase"
+                              required
+                            >
+                              <option class="common_client" value="">
+                                Select Phase
+                              </option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Phase Id</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="phase_id"
+                              class="form-control"
+                              placeholder="Enter Phase ID"
+                              id="phase_id"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Phase Title
+                              <span class="text-danger"> * </span></label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="phase_title"
+                              class="form-control"
+                              placeholder="Enter Phase Title"
+                              id="phase_title"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Form Field End -->
                       <div class="d-flex justify-content-end">
                         <button
                           class="btn btn-next nextBtn pull-right mt-3"
                           type="button"
                         >
-                          Next Step
+                          Next
                         </button>
                       </div>
                     </div>
@@ -1246,7 +1357,9 @@
                                   placeholder="Select Support Tier"
                                   name="support_tier"
                                 >
-                                  <option class="common_client">Select Support Tier</option>
+                                  <option class="common_client">
+                                    Select Support Tier
+                                  </option>
                                   <option value="basic">Basic</option>
                                   <option value="standard">Standard</option>
                                   <option value="premium">Premium</option>
@@ -1324,7 +1437,7 @@
                         </div>
                         <!-- For Implementation -->
                         <div class="d-none" id="implementation_support_row">
-                         <div class="border row m-2 p-3">
+                          <div class="border row m-2 p-3">
                             <h6>Implementation</h6>
                             <div class="col-lg-4">
                               <div class="form-group mb-2">
@@ -1448,7 +1561,9 @@
                                   placeholder="Select Support Tier"
                                   name="support_tier"
                                 >
-                                  <option class="common_client">Select Support Tier</option>
+                                  <option class="common_client">
+                                    Select Support Tier
+                                  </option>
                                   <option value="basic">Basic</option>
                                   <option value="standard">Standard</option>
                                   <option value="premium">Premium</option>
@@ -1650,7 +1765,9 @@
                                   placeholder="Select Support Tier"
                                   name="support_tier"
                                 >
-                                  <option class="common_client">Select Support Tier</option>
+                                  <option class="common_client">
+                                    Select Support Tier
+                                  </option>
                                   <option value="basic">Basic</option>
                                   <option value="standard">Standard</option>
                                   <option value="premium">Premium</option>
@@ -1741,6 +1858,36 @@
         </div>
       </div>
     </div>
+    <!-- Create Client Modal Start -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content rounded-0">
+          <div
+            class="modal-header p-1 px-3 shadow-lg main_bg text-white rounded-0"
+          >
+            <h5 class="modal-title" id="exampleModalLabel">Create Client</h5>
+            <button
+              type="button"
+              class="btn-close border rounded-circle bg-white text-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Create Client Information Here</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Create Client Modal End -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
