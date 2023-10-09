@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      .stepwizard {
+        display: table;
+        width: 100%;
+      }
+      .stepwizard p {
+        width: 100%;
+        text-align: start;
+      }
+      .stepwizard-row {
+        display: table-row;
+        display: flex;
+        flex-direction: column;
+      }
+      /* .stepwizard-row:before {
+        top: 5rem;
+        right: 12.1rem;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 40%;
+        transform: rotate(90deg);
+        height: 3px;
+        background-color: #ccc;
+      } */
+      .stepwizard-step {
+        display: flex;
+        text-align: center;
+        position: relative;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      .stepwizard-step .btn.disabled {
+        opacity: 1 !important;
+        filter: alpha(opacity=100) !important;
+      }
+
+      .form-deactive {
+        width: 100%;
+        text-align: start;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        border-radius: 5px;
+        background: #ae0a46;
+        color: white;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+          rgba(17, 17, 26, 0.05) 0px 8px 32px;
+      }
+
+      /*
+ *
+ * TOOLTIPTSTER DEFAULT CSS
+ */
+      .tooltipster-default {
+        border-radius: 5px;
+        border: 2px solid #000;
+        background: #4c4c4c;
+        color: #fff;
+      }
+
+      .tooltipster-default .tooltipster-content {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 16px;
+        padding: 8px 10px;
+        overflow: hidden;
+      }
+
+      .tooltipster-icon {
+        cursor: help;
+        margin-left: 4px;
+      }
+
+      .tooltipster-base {
+        padding: 0;
+        font-size: 0;
+        line-height: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 9999999;
+        pointer-events: none;
+        width: auto;
+        overflow: visible;
+      }
+
+      .tooltipster-base .tooltipster-content {
+        overflow: hidden;
+      }
+
+      .tooltipster-arrow {
+        display: block;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      .tooltipster-arrow span,
+      .tooltipster-arrow-border {
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+      }
+
+      .tooltipster-arrow-top span,
+      .tooltipster-arrow-top-right span,
+      .tooltipster-arrow-top-left span {
+        border-left: 8px solid transparent !important;
+        border-right: 8px solid transparent !important;
+        border-top: 8px solid;
+        bottom: -7px;
+      }
+
+      .tooltipster-arrow-top .tooltipster-arrow-border,
+      .tooltipster-arrow-top-right .tooltipster-arrow-border,
+      .tooltipster-arrow-top-left .tooltipster-arrow-border {
+        border-left: 9px solid transparent !important;
+        border-right: 9px solid transparent !important;
+        border-top: 9px solid;
+        bottom: -7px;
+      }
+
+      .tooltipster-arrow-bottom span,
+      .tooltipster-arrow-bottom-right span,
+      .tooltipster-arrow-bottom-left span {
+        border-left: 8px solid transparent !important;
+        border-right: 8px solid transparent !important;
+        border-bottom: 8px solid;
+        top: -7px;
+      }
+
+      .tooltipster-arrow-bottom .tooltipster-arrow-border,
+      .tooltipster-arrow-bottom-right .tooltipster-arrow-border,
+      .tooltipster-arrow-bottom-left .tooltipster-arrow-border {
+        border-left: 9px solid transparent !important;
+        border-right: 9px solid transparent !important;
+        border-bottom: 9px solid;
+        top: -7px;
+      }
+
+      .tooltipster-arrow-top span,
+      .tooltipster-arrow-top .tooltipster-arrow-border,
+      .tooltipster-arrow-bottom span,
+      .tooltipster-arrow-bottom .tooltipster-arrow-border {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+
+      .tooltipster-arrow-top-left span,
+      .tooltipster-arrow-bottom-left span {
+        left: 6px;
+      }
+
+      .tooltipster-arrow-top-left .tooltipster-arrow-border,
+      .tooltipster-arrow-bottom-left .tooltipster-arrow-border {
+        left: 5px;
+      }
+
+      .tooltipster-arrow-top-right span,
+      .tooltipster-arrow-bottom-right span {
+        right: 6px;
+      }
+
+      .tooltipster-arrow-top-right .tooltipster-arrow-border,
+      .tooltipster-arrow-bottom-right .tooltipster-arrow-border {
+        right: 5px;
+      }
+
+      .tooltipster-arrow-left span,
+      .tooltipster-arrow-left .tooltipster-arrow-border {
+        border-top: 8px solid transparent !important;
+        border-bottom: 8px solid transparent !important;
+        border-left: 8px solid;
+        top: 50%;
+        margin-top: -7px;
+        right: -7px;
+      }
+
+      .tooltipster-arrow-left .tooltipster-arrow-border {
+        border-top: 9px solid transparent !important;
+        border-bottom: 9px solid transparent !important;
+        border-left: 9px solid;
+        margin-top: -8px;
+      }
+
+      .tooltipster-arrow-right span,
+      .tooltipster-arrow-right .tooltipster-arrow-border {
+        border-top: 8px solid transparent !important;
+        border-bottom: 8px solid transparent !important;
+        border-right: 8px solid;
+        top: 50%;
+        margin-top: -7px;
+        left: -7px;
+      }
+
+      .tooltipster-arrow-right .tooltipster-arrow-border {
+        border-top: 9px solid transparent !important;
+        border-bottom: 9px solid transparent !important;
+        border-right: 9px solid;
+        margin-top: -8px;
+      }
+
+      .tooltipster-fade {
+        opacity: 0;
+        -webkit-transition-property: opacity;
+        -moz-transition-property: opacity;
+        -o-transition-property: opacity;
+        -ms-transition-property: opacity;
+        transition-property: opacity;
+      }
+
+      .tooltipster-fade-show {
+        opacity: 1;
+      }
+
+      .tooltipster-grow {
+        -webkit-transform: scale(0, 0);
+        -moz-transform: scale(0, 0);
+        -o-transform: scale(0, 0);
+        -ms-transform: scale(0, 0);
+        transform: scale(0, 0);
+        -webkit-transition-property: -webkit-transform;
+        -moz-transition-property: -moz-transform;
+        -o-transition-property: -o-transform;
+        -ms-transition-property: -ms-transform;
+        transition-property: transform;
+        -webkit-backface-visibility: hidden;
+      }
+
+      .tooltipster-grow-show {
+        -webkit-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        transform: scale(1, 1);
+        -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+        -webkit-transition-timing-function: cubic-bezier(
+          0.175,
+          0.885,
+          0.32,
+          1.15
+        );
+        -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+      }
+
+      .tooltipster-swing {
+        opacity: 0;
+        -webkit-transform: rotateZ(4deg);
+        -moz-transform: rotateZ(4deg);
+        -o-transform: rotateZ(4deg);
+        -ms-transform: rotateZ(4deg);
+        transform: rotateZ(4deg);
+        -webkit-transition-property: -webkit-transform, opacity;
+        -moz-transition-property: -moz-transform;
+        -o-transition-property: -o-transform;
+        -ms-transition-property: -ms-transform;
+        transition-property: transform;
+      }
+
+      .tooltipster-swing-show {
+        opacity: 1;
+        -webkit-transform: rotateZ(0);
+        -moz-transform: rotateZ(0);
+        -o-transform: rotateZ(0);
+        -ms-transform: rotateZ(0);
+        transform: rotateZ(0);
+        -webkit-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 1);
+        -webkit-transition-timing-function: cubic-bezier(
+          0.23,
+          0.635,
+          0.495,
+          2.4
+        );
+        -moz-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+        -ms-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+        -o-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+        transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+      }
+
+      .tooltipster-fall {
+        top: 0;
+        -webkit-transition-property: top;
+        -moz-transition-property: top;
+        -o-transition-property: top;
+        -ms-transition-property: top;
+        transition-property: top;
+        -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+        -webkit-transition-timing-function: cubic-bezier(
+          0.175,
+          0.885,
+          0.32,
+          1.15
+        );
+        -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+      }
+
+      .tooltipster-fall.tooltipster-dying {
+        -webkit-transition-property: all;
+        -moz-transition-property: all;
+        -o-transition-property: all;
+        -ms-transition-property: all;
+        transition-property: all;
+        top: 0 !important;
+        opacity: 0;
+      }
+
+      .tooltipster-slide {
+        left: -40px;
+        -webkit-transition-property: left;
+        -moz-transition-property: left;
+        -o-transition-property: left;
+        -ms-transition-property: left;
+        transition-property: left;
+        -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+        -webkit-transition-timing-function: cubic-bezier(
+          0.175,
+          0.885,
+          0.32,
+          1.15
+        );
+        -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+      }
+
+      .tooltipster-slide.tooltipster-dying {
+        -webkit-transition-property: all;
+        -moz-transition-property: all;
+        -o-transition-property: all;
+        -ms-transition-property: all;
+        transition-property: all;
+        left: 0 !important;
+        opacity: 0;
+      }
+
+      .tooltipster-content-changing {
+        opacity: 0.5;
+        -webkit-transform: scale(1.1, 1.1);
+        -moz-transform: scale(1.1, 1.1);
+        -o-transform: scale(1.1, 1.1);
+        -ms-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+      }
+
+      /* *
+ * TOOLTIPTSTER OVERRIDE CSS
+ */
+      .tooltipster-light {
+        border-radius: 5px;
+        background-color: #247297;
+        color: #fff;
+      }
+
+      .tooltipster-content {
+        font-family: Verdana, sans-serif;
+        color: white;
+        font-size: 13px;
+        line-height: 16px;
+        padding: 8px 10px;
+      }
+      .forms-active {
+        color: white;
+        border-radius: 5px;
+        width: 100%;
+        background: #247297;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+          rgba(17, 17, 26, 0.05) 0px 8px 32px;
+      }
+      .left-side-forms {
+        color: #ae0a46;
+        background: #eee;
+      }
+      .btn-next {
+        background-color: #ae0a46;
+        color: white;
+        padding: 10px 30px;
+      }
+      .btn-finish {
+        background-color: #ae0a46;
+        color: white;
+        padding: 10px 30px;
+      }
+      .btn-next:hover {
+        background-color: #247297;
+        color: white;
+        padding: 10px 30px;
+        transition: all 0.5s ease-in;
+        box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+          rgba(17, 17, 26, 0.05) 0px 8px 32px;
+      }
+      .btn-finish:hover {
+        background-color: #247297;
+        color: white;
+        padding: 10px 30px;
+        transition: all 0.5s ease-in;
+        box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+          rgba(17, 17, 26, 0.05) 0px 8px 32px;
+      }
+      .main_bg {
+        background-color: #ae0a46;
+        text-transform: uppercase;
+      }
+      .main_color {
+        color: #247297;
+      }
+      .label_size {
+        font-size: 13px;
+      }
+      /* For CHeckbox */
+      .checkbox-wrapper-65 *,
+      .checkbox-wrapper-65 ::after,
+      .checkbox-wrapper-65 ::before {
+        box-sizing: border-box;
+      }
+
+      .checkbox-wrapper-65 .cbx {
+        position: relative;
+        display: block;
+        float: left;
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        background-color: #1c4780;
+        background-image: linear-gradient(#0f698d, #1d3c6b);
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15),
+          inset 0 -1px 1px rgba(0, 0, 0, 0.15);
+        transition: all 0.15s ease;
+      }
+
+      .checkbox-wrapper-65 .cbx svg {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: #fff;
+        stroke-width: 2;
+        stroke-dasharray: 17;
+        stroke-dashoffset: 17;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .checkbox-wrapper-65 .cbx + span {
+        float: left;
+        margin-left: 6px;
+        margin-top: -4px;
+      }
+
+      .checkbox-wrapper-65 {
+        user-select: none;
+      }
+
+      .checkbox-wrapper-65 label {
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      .checkbox-wrapper-65 input[type="checkbox"] {
+        display: none;
+        visibility: hidden;
+      }
+
+      .checkbox-wrapper-65 input[type="checkbox"]:checked + .cbx {
+        background-color: #606062;
+        background-image: linear-gradient(#2584d2, #1d52c1);
+      }
+
+      .checkbox-wrapper-65 input[type="checkbox"]:checked + .cbx svg {
+        stroke-dashoffset: 0;
+        transition: all 0.15s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 mt-5">
+          <div class="card mt-3 p-0 shadow-lg border-0">
+            <div class="row">
+              <div class="col-lg-2 left-side-forms p-2 pt-3 shadow-lg">
+                <div class="stepwizard p-0">
+                  <div class="stepwizard-row setup-panel">
+                    <!-- Update Step 1 button -->
+                    <div class="stepwizard-step">
+                      <a
+                        href="#step-1"
+                        type="button"
+                        class="btn forms-complete form-deactive"
+                      >
+                        Project Details</a
+                      >
+                    </div>
+
+                    <!-- Update Step 2 button -->
+                    <div class="stepwizard-step">
+                      <a
+                        href="#step-2"
+                        type="button"
+                        class="btn btn-default form-deactive disabled"
+                        >Phase Details</a
+                      >
+                    </div>
+
+                    <!-- Update Step 2 button -->
+                    <div class="stepwizard-step">
+                      <a
+                        href="#step-3"
+                        type="button"
+                        class="btn btn-default form-deactive disabled"
+                        >Support Details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-10 p-3">
+                <form role="form" id="form">
+                  <div class="border p-3 setup-content me-3" id="step-1">
+                    <div class="col-md-12">
+                      <!-- Form Field Start -->
+                      <div class="row gx-2">
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Client Id <span class="text-danger"> * </span></label
+                            >
+                            <select
+                              name="client_id"
+                              class="form-select w-100 select-wizard clientID"
+                              data-allow-clear="true"
+                              placeholder="Choose Client"
+                              required
+                            >
+                              <option class="common_client">Select Client Id</option>
+                              <option>UK</option>
+                              <option>USA</option>
+                              <option>Germany</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Sector Id <span class="text-danger"> * </span></label
+                            >
+                            <select
+                              class="form-select w-100 select-wizard clientID"
+                              data-allow-clear="true"
+                              placeholder="Choose Client"
+                              name="sector_id" required
+                            >
+                              <option class="common_client" value="">Select Sector Id</option>
+                              <option>UK</option>
+                              <option>USA</option>
+                              <option>Germany</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Project ID (PID)</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="project_code"
+                              class="form-control"
+                              placeholder="Enter Project Code"
+                              id="project_code"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Team Member</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="number"
+                              name="team_member"
+                              class="form-control"
+                              placeholder="Enter Team Members Number"
+                              id="team_member"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Project Name <span class="text-danger"> * </span></label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="project_title"
+                              class="form-control"
+                              placeholder="Enter Your Project Name"
+                              id="project_title" required
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Partner Name</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="partner_name"
+                              class="form-control"
+                              value="NGEN IT"
+                              placeholder="Enter Project Code"
+                              id="partner_name"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Client Name <span class="text-danger"> * </span> </label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="client_name"
+                              class="form-control"
+                              placeholder="Enter Client Name"
+                              id="client_name" required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Client Code</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="client_code"
+                              class="form-control"
+                              placeholder="Enter Client Code"
+                              id="client_code"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-2 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Duration</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="number"
+                              name="project_duration"
+                              class="form-control"
+                              placeholder="Enter Duration"
+                              id="firstName"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Start Time <span class="text-danger"> * </span></label
+                            >
+                            <input
+                              maxlength="100"
+                              type="date"
+                              name="create_time"
+                              class="form-control"
+                              placeholder="Enter Start Time"
+                              id="create_time" required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Close Time</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="date"
+                              name="closed_time"
+                              class="form-control"
+                              placeholder="Enter Close Time"
+                              id="closed_time"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Order Id</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="order_id"
+                              class="form-control"
+                              placeholder="Enter Order Number"
+                              id="order_id"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Support Hour</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="support_hour"
+                              class="form-control"
+                              placeholder="Enter Support Hour"
+                              id="support_hour"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Partner Primary Contact</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="partner_primary_contact"
+                              class="form-control"
+                              placeholder="Enter Project Code"
+                              id="partner_primary_contact"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Partner Secondary Contact</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="partner_secondary_contact"
+                              class="form-control"
+                              placeholder="Enter Partner Secondary Contact"
+                              id="partner_secondary_contact"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Client Primary Contact</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="client_primary_contact"
+                              class="form-control"
+                              placeholder="Enter Client Primary Contact"
+                              id="client_primary_contact"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Client Secondary Contact</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="text"
+                              name="client_secondary_contact"
+                              class="form-control"
+                              placeholder="Enter Client Secondary Contact"
+                              id="client_secondary_contact"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Contact Agreement</label
+                            >
+                            <input
+                              maxlength="100"
+                              type="file"
+                              name="contact_agreement"
+                              class="form-control"
+                              placeholder="Enter Contact Agreement"
+                              id="contact_agreement"
+                            />
+                          </div>
+                        </div>
+                        <!-- <div class="col-lg-4 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Support Tier</label
+                            >
+                            <select
+                              class="form-select w-100 select-wizard clientID"
+                              data-allow-clear="true"
+                              placeholder="Select Support Tier"
+                              name="support_tier"
+                            >
+                              <option class="common_client"></option>
+                              <option value="basic">Basic</option>
+                              <option value="standard">Standard</option>
+                              <option value="premium">Premium</option>
+                            </select>
+                          </div>
+                        </div> -->
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Status <span class="text-danger"> * </span></label
+                            >
+                            <select
+                              class="form-select w-100 select-wizard clientID"
+                              data-allow-clear="true"
+                              placeholder="Choose Client"
+                              name="status"
+                              required
+                            >
+                              <option class="common_client">Select Status</option>
+                              <option value="pending">Pending</option>
+                              <option value="on_going">On Going</option>
+                              <option value="completed">Completed</option>
+                              <option value="delaying">Delaying</option>
+                              <option value="partially_deployed">
+                                Partially Deployed
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Status Description</label
+                            >
+                            <textarea
+                              class="form-control"
+                              id="status_description"
+                              rows="1"
+                              name="status_description"
+                              placeholder="Enter Status Description"
+                            ></textarea>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                          <div class="form-group mb-2">
+                            <label
+                              class="control-label main_color fw-bold label_size"
+                              >Country</label
+                            >
+                            <select
+                              name="country"
+                              class="form-select w-100 select-wizard clientID"
+                              data-allow-clear="true"
+                              placeholder="Choose Client"
+                            >
+                              <option class="common_client">Select Country</option>
+                              <option>UK</option>
+                              <option>USA</option>
+                              <option>Germany</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Form Field Start -->
+                      <div class="d-flex justify-content-end">
+                        <button
+                          class="btn btn-next nextBtn pull-right mt-3"
+                          type="button"
+                        >
+                          Next Step
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Second Step Form -->
+                  <div class="border p-3 setup-content me-3" id="step-2">
+                    <div class="col-md-12">
+                      <h5 class="main_color pb-2">Phase Details</h5>
+                        <!-- Form Field Start -->
+                        <div class="row gx-2">
+                          <div class="col-lg-4 col-sm-6">
+                            <div class="form-group mb-2">
+                              <label
+                                class="control-label main_color fw-bold label_size"
+                                >Type <span class="text-danger"> * </span></label
+                              >
+                              <select
+                                class="form-select w-100 select-wizard clientID"
+                                data-allow-clear="true"
+                                placeholder="Choose Client"
+                                name="type" required
+                              >
+                                <option class="common_client" value="">
+                                  Select Type
+                                </option>
+                                <option value="development">Development</option>
+                                <option value="deployment">Deployment</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 col-sm-6">
+                            <div class="form-group mb-2">
+                              <label
+                                class="control-label main_color fw-bold label_size"
+                                >Phase <span class="text-danger"> * </span></label
+                              >
+                              <select
+                                class="form-select w-100 select-wizard clientID"
+                                data-allow-clear="true"
+                                placeholder="Select Phase"
+                                name="phase" required
+                              >
+                                <option class="common_client" value="">
+                                  Select Phase
+                                </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 col-sm-6">
+                            <div class="form-group mb-2">
+                              <label
+                                class="control-label main_color fw-bold label_size"
+                                >Phase Id</label
+                              >
+                              <input
+                                maxlength="100"
+                                type="text"
+                                name="phase_id"
+                                class="form-control"
+                                placeholder="Enter Phase ID"
+                                id="phase_id" 
+                              />
+                            </div>
+                          </div>
+                          <div class="col-lg-12 col-sm-6">
+                            <div class="form-group mb-2">
+                              <label
+                                class="control-label main_color fw-bold label_size"
+                                >Phase Title <span class="text-danger"> * </span></label
+                              >
+                              <input
+                                maxlength="100"
+                                type="text"
+                                name="phase_title"
+                                class="form-control"
+                                placeholder="Enter Phase Title"
+                                id="phase_title" required
+                              />
+                            </div>
+                          </div>
+                          
+                        </div>
+                        <!-- Form Field End -->
+                      <div class="d-flex justify-content-end">
+                        <button
+                          class="btn btn-next nextBtn pull-right mt-3"
+                          type="button"
+                        >
+                          Next Step
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Third Step Form -->
+                  <div class="setup-content me-3" id="step-3">
+                    <div class="col-md-12 border p-3">
+                      <h5 class="main_color pb-2">Support Details</h5>
+                      <div class="row gx-2">
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="form-group mb-2">
+                            <div class="checkbox-wrapper-65">
+                              <label for="cbk1-67">
+                                <input
+                                  id="cbk1-67"
+                                  type="checkbox"
+                                  name="amc_support"
+                                  class="checkbox-toggle"
+                                  data-target="#amc_support_row"
+                                />
+                                <span class="cbx">
+                                  <svg
+                                    viewBox="0 0 12 11"
+                                    height="11px"
+                                    width="12px"
+                                  >
+                                    <polyline
+                                      points="1 6.29411765 4.5 10 11 1"
+                                    ></polyline>
+                                  </svg>
+                                </span>
+                                <span>AMC Support</span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="form-group mb-2">
+                            <div class="checkbox-wrapper-65">
+                              <label for="cbk1-66">
+                                <input
+                                  id="cbk1-66"
+                                  type="checkbox"
+                                  name="implementation_support"
+                                  class="checkbox-toggle"
+                                  data-target="#implementation_support_row"
+                                />
+                                <span class="cbx">
+                                  <svg
+                                    viewBox="0 0 12 11"
+                                    height="11px"
+                                    width="12px"
+                                  >
+                                    <polyline
+                                      points="1 6.29411765 4.5 10 11 1"
+                                    ></polyline>
+                                  </svg>
+                                </span>
+                                <span>Implementation</span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                          <div class="form-group mb-2">
+                            <div class="checkbox-wrapper-65">
+                              <label for="cbk1-68">
+                                <input
+                                  id="cbk1-68"
+                                  type="checkbox"
+                                  name="other_support"
+                                  class="checkbox-toggle"
+                                  data-target="#others_support_row"
+                                />
+                                <span class="cbx">
+                                  <svg
+                                    viewBox="0 0 12 11"
+                                    height="11px"
+                                    width="12px"
+                                  >
+                                    <polyline
+                                      points="1 6.29411765 4.5 10 11 1"
+                                    ></polyline>
+                                  </svg>
+                                </span>
+                                <span>Other Support</span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- For AMC Support -->
+                        <div class="d-none" id="amc_support_row">
+                          <div class="border row m-2 p-3">
+                            <h6>AMC Support</h6>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Name</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_title"
+                                  class="form-control"
+                                  placeholder="Enter Support Title"
+                                  id="support_title"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Id (SID)</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_id"
+                                  class="form-control"
+                                  placeholder="Enter Support Id"
+                                  id="support_id"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Order Id</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="number"
+                                  name="order_id"
+                                  class="form-control"
+                                  placeholder="Enter Order Id"
+                                  id="order_id"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Duration</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_duration"
+                                  class="form-control"
+                                  placeholder="Enter Support Duration"
+                                  id="support_duration"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Hour</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_hour"
+                                  class="form-control"
+                                  placeholder="Enter Support Hour"
+                                  id="support_hour"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="description"
+                                  rows="1"
+                                  name="description"
+                                  placeholder="Enter "
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Scope Of Work</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="scope_work"
+                                  rows="1"
+                                  name="scope_work"
+                                  placeholder="Enter Status Scope Of Work"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Tier</label
+                                >
+                                <select
+                                  class="form-select w-100 select-wizard clientID"
+                                  data-allow-clear="true"
+                                  placeholder="Select Support Tier"
+                                  name="support_tier"
+                                >
+                                  <option class="common_client">Select Support Tier</option>
+                                  <option value="basic">Basic</option>
+                                  <option value="standard">Standard</option>
+                                  <option value="premium">Premium</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Tier Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="support_tier_description"
+                                  rows="1"
+                                  name="support_tier_description"
+                                  placeholder="Enter Support Tier Description"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Status</label
+                                >
+                                <select
+                                  class="form-select w-100 select-wizard clientID"
+                                  data-allow-clear="true"
+                                  placeholder="Select Support Tier"
+                                  name="status"
+                                >
+                                  <option class="common_client" value="">
+                                    Select Support Status
+                                  </option>
+                                  <option value="pending">Pending</option>
+                                  <option value="on_going">On Going</option>
+                                  <option value="closed">Closed</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Status Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="status_description"
+                                  rows="1"
+                                  name="status_description"
+                                  placeholder="Enter Status Description"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Attachment</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="file"
+                                  name="support_attachment"
+                                  class="form-control"
+                                  placeholder="Enter Attachment"
+                                  id="attachment"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- For Implementation -->
+                        <div class="d-none" id="implementation_support_row">
+                         <div class="border row m-2 p-3">
+                            <h6>Implementation</h6>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Name</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_title"
+                                  class="form-control"
+                                  placeholder="Enter Support Title"
+                                  id="support_title"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Id (SID)</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_id"
+                                  class="form-control"
+                                  placeholder="Enter Support Id"
+                                  id="support_id"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Order Id</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="number"
+                                  name="order_id"
+                                  class="form-control"
+                                  placeholder="Enter Order Id"
+                                  id="order_id"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Duration</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_duration"
+                                  class="form-control"
+                                  placeholder="Enter Support Duration"
+                                  id="support_duration"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Hour</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_hour"
+                                  class="form-control"
+                                  placeholder="Enter Support Hour"
+                                  id="support_hour"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="description"
+                                  rows="1"
+                                  name="description"
+                                  placeholder="Enter "
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Scope Of Work</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="scope_work"
+                                  rows="1"
+                                  name="scope_work"
+                                  placeholder="Enter Status Scope Of Work"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Tier</label
+                                >
+                                <select
+                                  class="form-select w-100 select-wizard clientID"
+                                  data-allow-clear="true"
+                                  placeholder="Select Support Tier"
+                                  name="support_tier"
+                                >
+                                  <option class="common_client">Select Support Tier</option>
+                                  <option value="basic">Basic</option>
+                                  <option value="standard">Standard</option>
+                                  <option value="premium">Premium</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Tier Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="support_tier_description"
+                                  rows="1"
+                                  name="support_tier_description"
+                                  placeholder="Enter Support Tier Description"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Status</label
+                                >
+                                <select
+                                  class="form-select w-100 select-wizard clientID"
+                                  data-allow-clear="true"
+                                  placeholder="Select Support Tier"
+                                  name="status"
+                                >
+                                  <option class="common_client" value="">
+                                    Select Support Status
+                                  </option>
+                                  <option value="pending">Pending</option>
+                                  <option value="on_going">On Going</option>
+                                  <option value="closed">Closed</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Status Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="status_description"
+                                  rows="1"
+                                  name="status_description"
+                                  placeholder="Enter Status Description"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Attachment</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="file"
+                                  name="support_attachment"
+                                  class="form-control"
+                                  placeholder="Enter Attachment"
+                                  id="attachment"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- For Other Support -->
+                        <div class="d-none" id="others_support_row">
+                          <div class="border row m-2 p-3">
+                            <h6>Other Support</h6>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Name</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_title"
+                                  class="form-control"
+                                  placeholder="Enter Support Title"
+                                  id="support_title"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Id (SID)</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_id"
+                                  class="form-control"
+                                  placeholder="Enter Support Id"
+                                  id="support_id"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Order Id</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="number"
+                                  name="order_id"
+                                  class="form-control"
+                                  placeholder="Enter Order Id"
+                                  id="order_id"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Duration</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_duration"
+                                  class="form-control"
+                                  placeholder="Enter Support Duration"
+                                  id="support_duration"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-2">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Hour</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="text"
+                                  name="support_hour"
+                                  class="form-control"
+                                  placeholder="Enter Support Hour"
+                                  id="support_hour"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="description"
+                                  rows="1"
+                                  name="description"
+                                  placeholder="Enter "
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Scope Of Work</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="scope_work"
+                                  rows="1"
+                                  name="scope_work"
+                                  placeholder="Enter Status Scope Of Work"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Tier</label
+                                >
+                                <select
+                                  class="form-select w-100 select-wizard clientID"
+                                  data-allow-clear="true"
+                                  placeholder="Select Support Tier"
+                                  name="support_tier"
+                                >
+                                  <option class="common_client">Select Support Tier</option>
+                                  <option value="basic">Basic</option>
+                                  <option value="standard">Standard</option>
+                                  <option value="premium">Premium</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Tier Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="support_tier_description"
+                                  rows="1"
+                                  name="support_tier_description"
+                                  placeholder="Enter Support Tier Description"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Status</label
+                                >
+                                <select
+                                  class="form-select w-100 select-wizard clientID"
+                                  data-allow-clear="true"
+                                  placeholder="Select Support Tier"
+                                  name="status"
+                                >
+                                  <option class="common_client" value="">
+                                    Select Support Status
+                                  </option>
+                                  <option value="pending">Pending</option>
+                                  <option value="on_going">On Going</option>
+                                  <option value="closed">Closed</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Status Description</label
+                                >
+                                <textarea
+                                  class="form-control"
+                                  id="status_description"
+                                  rows="1"
+                                  name="status_description"
+                                  placeholder="Enter Status Description"
+                                ></textarea>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="form-group mb-2">
+                                <label
+                                  class="control-label main_color fw-bold label_size"
+                                  >Support Attachment</label
+                                >
+                                <input
+                                  maxlength="100"
+                                  type="file"
+                                  name="support_attachment"
+                                  class="form-control"
+                                  placeholder="Enter Attachment"
+                                  id="attachment"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                      <button class="btn btn-finish pull-right" type="submit">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        //validation
+        $("input, select").tooltipster({
+          trigger: "custom",
+          onlyOne: false,
+          position: "right",
+          theme: "tooltipster-light",
+        });
+
+        $("#form").validate({
+          errorPlacement: function (error, element) {
+            var lastError = $(element).data("lastError"),
+              newError = $(error).text();
+
+            $(element).data("lastError", newError);
+
+            if (newError !== "" && newError !== lastError) {
+              $(element).tooltipster("content", newError);
+              $(element).tooltipster("show");
+            }
+          },
+          success: function (label, element) {
+            $(element).tooltipster("hide");
+          },
+        });
+
+        /* This code handles all of the navigation stuff.
+         ** Probably leave it. Credit to https://bootsnipp.com/snippets/featured/form-wizard-and-validation
+         */
+        var navListItems = $("div.setup-panel div a"),
+          allWells = $(".setup-content"),
+          allNextBtn = $(".nextBtn");
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+          e.preventDefault();
+          var $target = $($(this).attr("href")),
+            $item = $(this);
+
+          if (!$item.hasClass("disabled")) {
+            navListItems.removeClass("forms-active").addClass("btn-default");
+            $item.addClass("forms-active");
+            $("input, select").tooltipster("hide");
+            allWells.hide();
+            $target.show();
+            $target.find("input:eq(0)").focus();
+          }
+        });
+
+        /* Handles validating using jQuery validate.
+         */
+        allNextBtn.click(function () {
+          var curStep = $(this).closest(".setup-content"),
+            curStepBtn = curStep.attr("id"),
+            nextStepWizard = $(
+              'div.setup-panel div a[href="#' + curStepBtn + '"]'
+            )
+              .parent()
+              .next()
+              .children("a"),
+            curInputs = curStep.find("input"),
+            isValid = true;
+
+          //Loop through all inputs in this form group and validate them.
+          for (var i = 0; i < curInputs.length; i++) {
+            if (!$(curInputs[i]).valid()) {
+              isValid = false;
+            }
+          }
+
+          if (isValid) {
+            //Progress to the next page.
+            nextStepWizard.removeClass("disabled").trigger("click");
+            // # # # AJAX REQUEST HERE # # #
+
+            /*
+        Theoretically, in order to preserve the state of the form should the worst happen, we could use an ajax call that would look something like this:
+        
+        //Prepare the key-val pairs like a normal post request.
+        var fields = {};
+        for(var i= 0; i < curInputs.length; i++){
+          fields[$(curInputs[i]).attr("name")] = $(curInputs[i]).attr("name").val();
+        }
+        
+        $.post(
+            "location.php",
+            fields,
+            function(data){
+              //Silent success handler.
+            }                
+        );
+        
+        //The FINAL button on last page should have its own logic to finalize the enrolment.
+        */
+          }
+        });
+
+        $("div.setup-panel div a.forms-complete").trigger("click");
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $(".checkbox-toggle").change(function () {
+          var targetId = $(this).data("target");
+          $(targetId).toggleClass("d-none", !this.checked);
+        });
+      });
+    </script>
+  </body>
+</html>
